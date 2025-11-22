@@ -1,0 +1,836 @@
+{
+	// ========================================
+	// EDITOR
+	// ========================================
+	"editor.acceptSuggestionOnEnter": "smart",
+	"editor.autoClosingQuotes": "never",
+	"editor.bracketPairColorization.enabled": true,
+	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.fixAll.markdownlint": "always",
+	},
+	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"editor.detectIndentation": false,
+	"editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+	"editor.fontLigatures": true,
+	"editor.fontSize": 14,
+	"editor.formatOnPaste": false,
+	"editor.formatOnSave": false,
+	"editor.formatOnType": true,
+	"editor.hover.delay": 200,
+	"editor.hover.enabled": true,
+	"editor.hover.hidingDelay": 0,
+	"editor.inlayHints.fontSize": 12,
+	"editor.inlayHints.maximumLength": 30,
+	"editor.inlineSuggest.enabled": true,
+	"editor.insertSpaces": false,
+	"editor.lineHeight": 22,
+	"editor.minimap.maxColumn": 100,
+	"editor.minimap.renderCharacters": false,
+	"editor.padding.top": 100,
+	"editor.quickSuggestions": {
+		"other": true,
+		"comments": false,
+		"strings": true
+	},
+	"editor.semanticHighlighting.enabled": true,
+	"editor.semanticTokenColorCustomizations": {
+		"[Material Theme*]": {
+			"enabled": true,
+			"rules": {
+				"variable.declaration.readonly.local": "#F07178",
+				"variable.declaration.readonly": "#F07178",
+				"parameter.declaration": "#F07178",
+				"variable.readonly.local": "#EEFFFF",
+			},
+		},
+	},
+	"editor.suggestOnTriggerCharacters": false,
+	"editor.tokenColorCustomizations": {
+		"[Material Theme*]": {
+			"textMateRules": [
+				{
+					"scope": [
+						"string.quoted.single",
+						"string.quoted.double",
+						"string.template",
+					],
+					"settings": {
+						"foreground": "#C3E88D",
+					},
+				},
+				{
+					"scope": [
+						"keyword.operator.spread",
+						"keyword.operator.new",
+						"keyword.operator.logical",
+						"keyword.operator.key",
+						"keyword.operator.ternary",
+						"keyword.operator.comparison",
+						"keyword.operator.assignment",
+						"keyword.operator.class",
+						"keyword.operator.string",
+						"keyword.operator.null-coalescing",
+						"keyword.operator.arithmetic",
+						"keyword.operator.relational",
+					],
+					"settings": {
+						"foreground": "#C792EA",
+					},
+				},
+				{
+					"scope": [
+						"variable.parameter.js",
+						"variable.other.constant.js",
+						"variable.language.this",
+						"entity.name.tag.nesting.css",
+					],
+					"settings": {
+						"foreground": "#F07178",
+					},
+				},
+				{
+					"scope": [
+						"variable.language.this",
+					],
+					"settings": {
+						"fontStyle": "italic",
+					},
+				},
+				{
+					"scope": [
+						"string.regexp",
+						"constant.character.escape.backslash.regexp",
+					],
+					"settings": {
+						"foreground": "#89DDFF",
+					},
+				},
+				{
+					"scope": [
+						"constant.language.json.comments",
+						"constant.language.boolean",
+						"constant.language.php",
+						"constant.language.undefined",
+						"constant.language.null",
+						"entity.name.tag.documentation",
+						"entity.name.tag.documentation.jsdoc",
+						"entity.name.tag.documentation.ts",
+						"entity.name.tag.documentation.js",
+						"entity.name.tag.documentation.jsx",
+						"entity.name.tag.documentation.tsx",
+						"storage.type.class.jsdoc",
+						"storage.type.function.jsdoc",
+						"storage.type.variable.jsdoc",
+						"variable.other.jsdoc",
+						"variable.parameter.jsdoc",
+						"entity.name.tag.jsdoc",
+						"entity.name.type.instance.jsdoc",
+						"constant.language.jsdoc",
+						"keyword.other.documentation",
+						"keyword.other.documentation.js",
+						"keyword.other.documentation.ts",
+						"keyword.other.documentation.jsx",
+						"keyword.other.documentation.tsx",
+						"variable.other.documentation",
+						"variable.other.documentation.js",
+						"variable.other.documentation.ts",
+						"variable.other.documentation.jsx",
+						"variable.other.documentation.tsx",
+						"storage.type.documentation",
+						"storage.type.documentation.js",
+						"storage.type.documentation.ts",
+						"storage.type.documentation.jsx",
+						"storage.type.documentation.tsx",
+						"punctuation.definition.block.tag.jsdoc",
+						// "entity.name.tag.documentation.phpdoc",
+						// "keyword.other.documentation.phpdoc",
+						// "punctuation.definition.block.tag.phpdoc",
+						// "keyword.other.phpdoc.php"
+					],
+					"settings": {
+						"foreground": "#F78C6C",
+					},
+				},
+				{
+					"scope": [
+						// "entity.name.type.phpdoc",
+						// "entity.name.type.instance.phpdoc",
+						// "support.class.phpdoc",
+						// "support.type.builtin.phpdoc",
+						// "support.other.namespace.phpdoc",
+						// "storage.type.phpdoc",
+						"constant.other.php",
+						"support.other.namespace",
+					],
+					"settings": {
+						"foreground": "#FFCB6B",
+					},
+				},
+				{
+					"scope": [
+						"meta.generic.phpdoc",
+						// "punctuation.definition.generic.begin.phpdoc",
+						// "punctuation.definition.generic.end.phpdoc",
+						// "punctuation.separator.delimiter.phpdoc",
+						// "punctuation.section.array.begin.phpdoc",
+						// "punctuation.section.array.end.phpdoc",
+					],
+					"settings": {
+						"foreground": "#C792EA",
+					},
+				},
+				{
+					"scope": [
+						"comment.block.documentation",
+						"comment.line.double-slash",
+						"comment.line.double-dash",
+						"comment.line.number-sign",
+						"comment.line.percentage",
+						"comment.block.documentation.phpdoc.php"
+					],
+					"settings": {
+						"foreground": "#546E7A",
+					},
+				},
+				{
+					"scope": [
+						"comment.block.documentation.js",
+						"comment.block.documentation.ts",
+						"comment.block.documentation.jsx",
+						"comment.block.documentation.tsx",
+					],
+					"settings": {
+						"foreground": "#546E7A",
+					},
+				},
+				{
+					"scope": [
+						"comment.block.documentation",
+						"comment.block.documentation.js",
+						"comment.block.documentation.ts",
+						"comment.block.documentation.jsx",
+						"comment.block.documentation.tsx",
+						"comment.line.double-slash",
+						"comment.line.double-slash.js",
+						"comment.line.double-slash.ts",
+						"comment.line.double-slash.jsx",
+						"comment.line.double-slash.tsx",
+						"comment.line.double-dash",
+						"comment.line.number-sign",
+						"comment.line.percentage",
+					],
+					"settings": {
+						"foreground": "#546E7A",
+					},
+				},
+			],
+		},
+	},
+	"php.docblock.colorMode": "simple",
+	"editor.wordWrap": "on",
+	"editor.experimental.preferTreeSitter.css": true,
+	// "editor.experimental.preferTreeSitter.typescript": true,
+	"editor.linkedEditing": true,
+	"editor.smoothScrolling": true,
+
+	// ========================================
+	// WORKBENCH
+	// ========================================
+	"workbench.activityBar.orientation": "vertical",
+	"workbench.colorTheme": "Material Theme High Contrast",
+	"workbench.commandPalette.experimental.suggestCommands": true,
+	"workbench.commandPalette.history": 500,
+	"workbench.commandPalette.preserveInput": true,
+	"workbench.editor.decorations.colors": true,
+	"workbench.externalBrowser": "chrome",
+	"workbench.hover.delay": 100,
+	"workbench.iconTheme": "material-icon-theme",
+	"workbench.list.horizontalScrolling": true,
+	"workbench.panel.defaultLocation": "right",
+	"workbench.preferredDarkColorTheme": "Material Theme High Contrast",
+	"workbench.preferredHighContrastColorTheme": "Material Theme High Contrast",
+	"workbench.preferredHighContrastLightColorTheme": "Material Theme High Contrast",
+	"workbench.preferredLightColorTheme": "Material Theme High Contrast",
+	"workbench.sash.hoverDelay": 250,
+	"window.zoomLevel": -1,
+	"workbench.editorAssociations": {
+		"*.svg": "default"
+	},
+
+	// ========================================
+	// TERMINAL
+	// ========================================
+	"terminal.integrated.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+	"terminal.integrated.fontSize": 12.5,
+	"terminal.integrated.enableMultiLinePasteWarning": "never",
+
+	// ========================================
+	// FILE MANAGEMENT
+	// ========================================
+	"explorer.confirmDelete": false,
+	"explorer.confirmDragAndDrop": false,
+	"explorer.decorations.badges": false,
+	"files.associations": {
+		"*.css": "tailwindcss",
+	},
+	"files.trimTrailingWhitespace": true,
+	"security.workspace.trust.untrustedFiles": "open",
+
+	// ========================================
+	// GIT
+	// ========================================
+	"git.autofetch": true,
+	"git.confirmSync": false,
+	"git.enableSmartCommit": true,
+	"git.ignoreMissingGitWarning": true,
+	"git.ignoreRebaseWarning": true,
+
+	// ========================================
+	// EXTENSIONS
+	// ========================================
+	"extensions.ignoreRecommendations": true,
+
+	// ========================================
+	// GITHUB COPILOT
+	// ========================================
+	"github.copilot.chat.codesearch.enabled": true,
+	"github.copilot.chat.followUps": "always",
+	"github.copilot.chat.search.semanticTextResults": true,
+	"github.copilot.editor.enableAutoCompletions": true,
+	"github.copilot.enable": {
+		"*": true,
+		"markdown": false,
+		"php": true,
+		"plaintext": false,
+		"postcss": true,
+		"yaml": false,
+	},
+
+	// ========================================
+	// CURSOR AI
+	// ========================================
+	"cursor.cpp.enablePartialAccepts": true,
+	"cursor.cpp.disabledLanguages": [],
+	"cursor.composer.shouldQueueWhenGenerating": false,
+	"cursor.composer.shouldAutoScrollToBottom": false,
+	"cursor.composer.textSizeScale": 1.3,
+	"cursorStats.enableAlerts": false,
+	"cursorStats.progressBarCriticalThreshold": 90,
+	"cursorStats.showProgressBars": true,
+	"cursor.composer.usageSummaryDisplay": "always",
+	"cursor.diffs.useCharacterLevelDiffs": true,
+	"cursor.composer.queueMessageDefaultBehavior": "queue",
+
+	// ========================================
+	// DIFF EDITOR
+	// ========================================
+	"diffEditor.codeLens": true,
+	"diffEditor.ignoreTrimWhitespace": false,
+
+	// ========================================
+	// EMMET
+	// ========================================
+	"emmet.includeLanguages": {
+		"*.css": "scss",
+	},
+
+	// ========================================
+	// BETTER ALIGN
+	// ========================================
+	"betterAlign.surroundSpace": {
+		"colon": [
+			-1,
+			1,
+		],
+		"comment": 2,
+	},
+
+	// ========================================
+	// SORTING
+	// ========================================
+	"sort-imports.on-save": true,
+	"sortLines.filterBlankLines": true,
+
+	// ========================================
+	// LANGUAGE-SPECIFIC FORMATTERS
+	// ========================================
+	"[scss]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	},
+	"[css]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features",
+		"tailwindCSS.validate": false,
+	},
+	"[json][jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features",
+		"tailwindCSS.validate": false,
+	},
+	"[markdown]": {
+		"editor.formatOnSave": true,
+		"editor.formatOnPaste": true,
+		"tailwindCSS.validate": false,
+	},
+	"[php]": {
+		"editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+		// "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
+		"tailwindCSS.validate": false,
+		"tailwindCSS.lint.cssConflict": "ignore",
+		"tailwindCSS.lint.invalidApply": "ignore",
+		"tailwindCSS.lint.invalidConfigPath": "ignore",
+		"tailwindCSS.lint.invalidScreen": "ignore",
+		"tailwindCSS.lint.invalidTailwindDirective": "ignore",
+		"tailwindCSS.lint.invalidVariant": "ignore",
+		"css.validate": false,
+		"less.validate": false,
+		"scss.validate": false,
+		"css.lint.duplicateProperties": "ignore",
+		"css.lint.unknownVendorSpecificProperties": "ignore",
+		"css.lint.unknownAtRules": "ignore",
+		"css.lint.unknownProperties": "ignore",
+		"css.lint.duplicateSelectors": "ignore"
+	},
+	"[shellscript]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format",
+		"tailwindCSS.validate": false,
+	},
+	"[svg]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"[typescript][javascriptreact]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features",
+		"tailwindCSS.validate": false,
+	},
+
+	// ========================================
+	// ESLINT
+	// ========================================
+	"eslint.format.enable": true,
+	"eslint.useFlatConfig": true,
+	"eslint.options": {
+		"overrideConfigFile": "config/eslint/eslint.config.cjs",
+	},
+	"eslint.workingDirectories": [
+		{
+			"directory": ".",
+			"changeProcessCWD": true,
+		},
+	],
+	"eslint.validate": [
+		"cjs",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"vue",
+	],
+
+	// ========================================
+	// PHP
+	// ========================================
+	"intelephense.compatibility.preferPsalmPhpstanPrefixedAnnotations": true,
+	"intelephense.codeLens.implementations.enable": true,
+	"intelephense.codeLens.overrides.enable": true,
+	"intelephense.codeLens.parent.enable": true,
+	"intelephense.codeLens.references.enable": true,
+	"intelephense.codeLens.usages.enable": true,
+	"intelephense.format.braces": "k&r",
+	"intelephense.environment.includePaths": [
+		"${workspaceFolder}/../../../plugins/advanced-custom-fields-pro",
+	],
+	"intelephense.stubs": [
+		// "*",
+		// "acf-pro",
+		"apache",
+		"bcmath",
+		"bz2",
+		"calendar",
+		"com_dotnet",
+		"Core",
+		"ctype",
+		"curl",
+		"date",
+		"dba",
+		"dom",
+		"enchant",
+		"exif",
+		"FFI",
+		"fileinfo",
+		"filter",
+		"fpm",
+		"ftp",
+		"gd",
+		"gettext",
+		"gmp",
+		"hash",
+		"iconv",
+		"imap",
+		"intl",
+		"json",
+		"ldap",
+		"libxml",
+		"mbstring",
+		"meta",
+		"mysqli",
+		"oci8",
+		"odbc",
+		"openssl",
+		"pcntl",
+		"pcre",
+		"PDO",
+		"pgsql",
+		"Phar",
+		"posix",
+		"pspell",
+		"random",
+		"readline",
+		"Reflection",
+		"session",
+		"shmop",
+		"SimpleXML",
+		"snmp",
+		"soap",
+		"sockets",
+		"sodium",
+		"SPL",
+		"sqlite3",
+		"standard",
+		"superglobals",
+		"sysvmsg",
+		"sysvsem",
+		"sysvshm",
+		"tidy",
+		"tokenizer",
+		"wordpress",
+		"xml",
+		"xmlreader",
+		"xmlrpc",
+		"xmlwriter",
+		"xsl",
+		"Zend OPcache",
+		"zip",
+		"zlib",
+	],
+	"intelephense.completion.maxItems": 1000,
+	"intelephense.diagnostics.undefinedSymbols": false,
+	"intelephense.environment.phpVersion": "8.4.10",
+	"intelephense.files.exclude": [
+		"**/.git/**",
+		"**/.svn/**",
+		"**/.hg/**",
+		"**/CVS/**",
+		"**/.DS_Store/**",
+		"**/node_modules/**",
+		"**/node_modules",
+		"**/node_modules/*",
+		"**/bower_components/**",
+		"**/vendor/**/{Tests,tests}/**",
+		"**/.history/**",
+		"**/vendor/**/vendor/**",
+		"**/composer/**",
+		"**/phpstan/**",
+		"**/.cache/phpstan/**",
+		"**/.cursor/**",
+		"~/.cursor/**",
+		".cursor/**",
+	],
+	"intelephense.maxMemory": 4096,
+	"intelephense.trace.server": "messages",
+	"php.inlayHints.parameters.suppressNameMatchingValue": true,
+	"php.inlayHints.parameters.enabled": false,
+	"php.completion.showParameters": true,
+	"php.files.exclude": {
+		"**/composer/**.php": true,
+		"**/node_modules/**.php": true,
+		"**/node_modules": true,
+		"**/node_modules/*.php": true,
+		"**/phpstan/**": true,
+		"**/phpstan/*.php": true,
+		".cache/phpstan/**": true,
+	},
+	"php.format.braces": "k&r",
+	"php.format.codeStyle": "Off",
+	"php.format.rules.addCommaAfterLastArrayElement": false,
+	"php.format.rules.addCommaAfterLastCallParameter": false,
+	"php.format.rules.addCommaAfterLastDeclParameter": false,
+	"php.format.rules.alignConsecutiveAssignments": false,
+	"php.format.rules.alignMatchArmBodies": false,
+	"php.format.rules.arrayInitializersNewLineAfterLastElement": true,
+	"php.format.rules.arrayInitializersNewLineBeforeFirstElement": true,
+	"php.format.rules.arrayInitializersWrap": "onEveryItem",
+	"php.format.rules.booleanConstantCasing": "lowercase",
+	"php.format.rules.callParametersNewLineAfterLeftParen": true,
+	"php.format.rules.callParametersNewLineBeforeRightParen": true,
+	"php.format.rules.catchOnNewLine": true,
+	"php.format.rules.declKeepRightParenAndOpenBraceOnOneLine": true,
+	"php.format.rules.declParametersNewLineBeforeRightParen": true,
+	"php.format.rules.elseOnNewLine": true,
+	"php.format.rules.finallyOnNewLine": true,
+	"php.format.rules.forStatementNewLineAfterLeftParen": true,
+	"php.format.rules.forStatementNewLineBeforeRightParen": true,
+	"php.format.rules.groupUseNewLineBeforeFirstDeclaration": true,
+	"php.format.rules.ifStatementNewLineAfterLeftParen": true,
+	"php.format.rules.ifStatementNewLineBeforeRightParen": true,
+	"php.format.rules.importSorting": "alphabetic",
+	"php.format.rules.indentHeredoc": true,
+	"php.format.rules.inlineHeredoc": true,
+	"php.format.rules.newLineAfterImplements": true,
+	"php.format.rules.nullConstantCasing": "lowercase",
+	"php.format.rules.spaceAfterCast": true,
+	"php.format.rules.spaceAroundConcatenation": true,
+	"php.format.rules.spaceBeforeColonInControlStatements": false,
+	"php.format.rules.spaceBeforeParenthesesInControlStatements": true,
+	"php.format.rules.switchStatementNewLineAfterLeftParen": true,
+	"php.format.rules.switchStatementNewLineBeforeRightParen": true,
+	"php.format.rules.whileStatementNewLineAfterLeftParen": true,
+	"php.format.rules.whileStatementNewLineBeforeRightParen": true,
+	"php.hover.fullname": true,
+	"php.hover.parametersFullName": true,
+	"php.memoryLimit": "4095M",
+	"php.problems.scope": "all",
+	"php.suggest.basic": true,
+	"php.validate.enable": true,
+	"php.validate.run": "onType",
+	"php.debug.executablePath": "/usr/local/bin/php",
+	"php.validate.executablePath": "/usr/local/bin/php",
+	"php.executablePath": "/usr/local/bin/php",
+	"php.workspace.shortOpenTag": "true",
+	"php.stubs": [
+		"*",
+		"acf-pro",
+		"apache",
+		"bcmath",
+		"bz2",
+		"calendar",
+		"com_dotnet",
+		"Core",
+		"ctype",
+		"curl",
+		"date",
+		"dba",
+		"dom",
+		"enchant",
+		"exif",
+		"FFI",
+		"fileinfo",
+		"filter",
+		"fpm",
+		"ftp",
+		"gd",
+		"gettext",
+		"gmp",
+		"hash",
+		"iconv",
+		"imap",
+		"intl",
+		"json",
+		"ldap",
+		"libxml",
+		"mbstring",
+		"meta",
+		"mysqli",
+		"oci8",
+		"odbc",
+		"openssl",
+		"pcntl",
+		"pcre",
+		"PDO",
+		"pgsql",
+		"Phar",
+		"posix",
+		"pspell",
+		"random",
+		"readline",
+		"Reflection",
+		"session",
+		"shmop",
+		"SimpleXML",
+		"snmp",
+		"soap",
+		"sockets",
+		"sodium",
+		"SPL",
+		"sqlite3",
+		"standard",
+		"superglobals",
+		"sysvmsg",
+		"sysvsem",
+		"sysvshm",
+		"tidy",
+		"tokenizer",
+		"wordpress",
+		"xml",
+		"xmlreader",
+		"xmlrpc",
+		"xmlwriter",
+		"xsl",
+		"Zend OPcache",
+		"zip",
+		"zlib",
+	],
+	"php.problems.exclude": {
+		"composer": true,
+		"psalm": true,
+	},
+	"php-intellisense.trace.server": "messages",
+	"phpstan.configFile": "phpstan/phpstan.neon,phpstan/phpstan.neon.dist",
+	"phpstan.rootDir": ".",
+	"phpstan.binPath": "composer/bin/phpstan",
+	"phpstan.binCommand": [],
+	"phpstan.pro": false,
+	"phpstan.options": [],
+	"phpstan.memoryLimit": "2G",
+	"phpstan.projectTimeout": 60000,
+	"phpstan.timeout": 10000,
+	"phpstan.suppressTimeoutMessage": false,
+	"phpstan.paths": {},
+	"phpstan.ignoreErrors": [],
+	"phpstan.tmpDir": "/tmp",
+	"phpstan.enabled": false,
+	"phpstan.singleFileMode": true,
+	"phpstan.enableStatusBar": false,
+	"phpstan.showTypeOnHover": true,
+	"phpstan.showProgress": false,
+
+	// ========================================
+	// JAVASCRIPT/TYPESCRIPT
+	// ========================================
+	"javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+	"javascript.format.insertSpaceBeforeFunctionParenthesis": false,
+	"javascript.referencesCodeLens.enabled": false,
+	"javascript.referencesCodeLens.showOnAllFunctions": false,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"javascript.updateImportsOnPaste.enabled": true,
+	"js/ts.implicitProjectConfig.checkJs": false,
+	"typescript.tsserver.experimental.enableProjectDiagnostics": true,
+	"typescript.implementationsCodeLens.enabled": true,
+	"typescript.implementationsCodeLens.showOnInterfaceMethods": true,
+	"typescript.referencesCodeLens.enabled": false,
+	"typescript.referencesCodeLens.showOnAllFunctions": false,
+	"typescript.updateImportsOnPaste.enabled": true,
+	"typescript.extension.sortImports.enableJavascript": true,
+	"typescript.extension.sortImports.sortOnSave": true,
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"typescript.extension.sortImports.pathSortOrder": [
+		"package",
+		"relativeUpLevel",
+		"relativeDownLevel"
+	],
+
+	// ========================================
+	// CSS/SCSS
+	// ========================================
+	"css.autoValidation": "Always",
+	"css.format.spaceAroundSelectorSeparator": true,
+	"css.lint.emptyRules": "ignore",
+	"css.lint.propertyIgnoredDueToDisplay": "ignore",
+	"css.lint.unknownAtRules": "ignore",
+	"css.lint.unknownProperties": "ignore",
+	"css.lint.validProperties": [
+		"@apply",
+	],
+	"css.validate": false,
+	"scss.format.spaceAroundSelectorSeparator": true,
+	"scss.lint.argumentsInColorFunction": "ignore",
+	"scss.lint.emptyRules": "ignore",
+	"scss.lint.hexColorLength": "ignore",
+	"scss.lint.unknownAtRules": "ignore",
+	"scss.lint.unknownProperties": "ignore",
+
+	// ========================================
+	// HTML
+	// ========================================
+	"html.format.preserveNewLines": false,
+	"html.format.templating": true,
+	"html.format.wrapAttributes": "aligned-multiple",
+	"html.format.wrapLineLength": 0,
+	"html.validate.styles": false,
+
+	// HTML CSS Support (disable noisy selector validation in embedded HTML)
+	"html-css-class-completion.enableValidation": false,
+
+	// ========================================
+	// TAILWIND CSS
+	// ========================================
+	"tailwindCSS.experimental.classRegex": [
+		["->class\\([^)]*\\)", "([^)]*)"],
+		["->class\\(\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`]*)"],
+		["->tailwind\\([^)]*\\)", "([^)]*)"],
+		["->tailwind\\(\\s*['\"`]([^'\"`]*)['\"`]", "([^'\"`]*)"],
+		["['\"`]([^'\"`]*)['\"`]", "([^'\"`]*)"]
+	],
+	"tailwindCSS.files.exclude": [
+		"**/.git/**",
+		"**/node_modules/**",
+		"**/composer/**",
+		"**/.hg/**",
+		"**/.svn/**",
+		"**/*.md",
+		"**/*.mdc",
+		"**/*.rules.mdc",
+		"**/.cursor/**",
+		"**/docs/**",
+		"**/inc/**.php",
+	],
+	"tailwindCSS.includeLanguages": {
+		"php": "html"
+	},
+	"tailwindCSS.lint.cssConflict": "ignore",
+	"tailwindCSS.lint.invalidApply": "warning",
+	"tailwindCSS.lint.invalidConfigPath": "warning",
+	"tailwindCSS.lint.invalidScreen": "warning",
+	"tailwindCSS.lint.invalidTailwindDirective": "warning",
+	"tailwindCSS.lint.invalidVariant": "warning",
+	"tailwindCSS.validate": true,
+
+	// ========================================
+	// UTILITY EXTENSIONS
+	// ========================================
+	"prettify-ts.enabled": true,
+	"prettify-ts.maxFunctionSignatures": 4,
+	"prettify-ts.maxCharacters": 1000,
+	"prettify-ts.maxDepth": 1,
+	"prettify-ts.maxProperties": 10,
+	"prettify-ts.maxSubProperties": 5,
+	"prettify-ts.typeIndentation": 2,
+
+	// ========================================
+	// ERROR LENS
+	// ========================================
+	"errorLens.enableOnDiffView": true,
+	"errorLens.problemRangeDecorationEnabled": true,
+	"errorLens.gutterIconsEnabled": true,
+	"errorLens.messageBackgroundMode": "message",
+	"errorLens.followCursor": "closestProblem",
+	"errorLens.ignoreUntitled": true,
+	"errorLens.excludeByMessage": [
+		"Missing semicolon",
+		"blank line",
+		"Trailing spaces",
+		"Unexpected trailing",
+		"CSS selector",
+		"is assigned a value",
+		"applies the same",
+	],
+	"json.schemaDownload.enable": true,
+	"php-docblocker.useShortNames": true,
+	"markdown-preview-enhanced.enablePreviewZenMode": false,
+	"markdown-preview-enhanced.previewTheme": "one-dark.css",
+	"markdown-preview-enhanced.codeBlockTheme": "auto.css",
+	"markdownlint.lintWorkspaceGlobs": [
+		"**/*.{md,mkd,mdwn,mdown,markdown,markdn,mdtxt,mdtext,workbook}",
+		"!**/*.code-search",
+		"!**/bower_components",
+		"!**/node_modules",
+		"!**/.git",
+		"!**/vendor",
+		"!**/composer",
+		"!**/chats",
+		"chats",
+	],
+	"markdownlint.focusMode": true,
+}

@@ -1,0 +1,255 @@
+---
+alwaysApply: true
+description: When working on any code.
+---
+
+# Code Style Guide
+
+> **Purpose:** This document captures the nuances of our style so that any contributor can write code that looks, feels, and behaves exactly like the rest of the theme. It is appreciated when you adopt these guidelines verbatim — *consistency is a feature*.
+
+---
+
+## Quick Start
+
+**Key Principles:**
+
+- **Tab-indentation, always.** Spaces never appear at the beginning of a line.
+- **Stroustrup bracing in every language** – opening brace on same line, closing on new line.
+- **Early returns over nested conditionals.** Exit early from functions and methods.
+- **Functional first.** Prefer expressions, pure functions, and array helpers over mutation & loops.
+- **Small units.** Functions and methods rarely exceed ~25 logical lines.
+- **Naming is narrative.** Choose names that explain *why* something exists—length is not a sin, ambiguity is.
+- **Type Safety > Convenience.** Null is a valid state; `any` is banned; explicit is better than implicit.
+- **Whitespace is signal.** One blank line separates logical blocks *inside* functions; no trailing blank lines at EOF.
+- **Comments document *why*, not *what*.** If code needs a what-comment, refactor instead.
+
+---
+
+## Fundamentals
+
+```php
+<?
+
+namespace BestEgg\Blocks;
+
+use BestEgg\Core\Field;
+use BestEgg\Helpers\Element;
+use BestEgg\Helpers\Utils;
+
+/**
+ * Example Block.
+ *
+ * @package BestEgg\Blocks
+ */
+class Example extends TemplateBlock {
+
+    #[Field(type: 'string')]
+    public string $title;
+
+    private bool $__has_title = false;
+
+    /**
+     * @inheritDoc
+     */
+    public static function init(int $post_id = 0, array $block = [], array $data = []): static {
+
+        $instance = new static($post_id, $block, Field::hydrate(static::class, $data));
+
+        $instance->__has_title = !empty($instance->title);
+
+        return $instance;
+
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function config(): array {
+
+        return [
+            'acf' => [
+                'title' => 'Example Block',
+            ],
+        ];
+
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function shouldRender(): bool {
+
+        return $this->__has_title;
+
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function html(): void {
+
+        Element::div()
+            ->class('example')
+            ->content($this->formatTitle())
+            ->render();
+
+    }
+
+    /**
+     * @return string
+     */
+    private function formatTitle(): string {
+
+        if (empty($this->title)) {
+            return '';
+        }
+
+        return Utils::formatString($this->title);
+
+    }
+
+}
+```
+
+- **Tabs** for all indentation.
+- One blank line **after** the opening brace of a function / method.
+- `return` lives alone on a line by itself.
+- `else` / `elseif` are nearly extinct — use early-return instead.
+
+---
+
+## PHP
+
+### PHP Formatting & Layout
+
+- **Tabs** for all indentation.
+- One blank line **after** the opening brace of a function / method.
+- `return` lives alone on a line by itself.
+- `else` / `elseif` are nearly extinct — use early-return instead.
+
+### Naming Conventions
+
+| Item | Style | Example |
+|------|-------|---------|
+| Classes | `PascalCase` | `GlobalData` |
+| Functions / Methods | `camelCase` | `getPost()` |
+| Private Functions / Methods | `camelCase` | `getCurrentPageConfig()` |
+| Variables | `snake_case` | `$post_id` |
+| Unused Variables | `_snake_case` | `$_args` |
+| Constants | `SCREAMING_SNAKE_CASE` | `GLOBAL_DEFAULT_CPID` |
+| Files | `kebab-case` | `better-credit.php` |
+| Files Qualified | `kebab-case.name` | `widget-file.config.php` |
+
+### Documentation (phpDoc)
+
+```php
+/**
+ * Get the post number from the API.
+ *
+ * @param ?\WP_Post $post The post data.
+ * @param int $value The request identifier.
+ * @return int The post number.
+ */
+public static function getPostNumberFromAPI(?\WP_Post $post = null, int $value = 0): int {
+```
+
+- Exactly **one blank line** after the description.
+- Sentences **end with periods**.
+- Param order matches implementation.
+
+### Type Safety
+
+- Try to implement type safety as much as possible. PHP sometimes makes it difficult, but it is a goal worth striving for.
+- Function arguments, return types, variable types, as much as possible, everywhere. Validate, then use.
+
+---
+
+## TypeScript
+
+### TypeScript Formatting & Layout
+
+```ts
+import { isElement } from '@utils/validation/isElement';
+import { renderColorChange } from '@utils/helpers/renderColorChange';
+
+const toggleMenuColor = (btn: HTMLButtonElement): void => {
+
+    btn?.addEventListener('click', (e: MouseEvent) => {
+
+        if (!isElement(e.currentTarget, HTMLButtonElement)) {
+            return;
+        }
+
+        renderColorChange(e.currentTarget);
+
+    });
+
+};
+```
+
+- **Tab indentation**, **Stroustrup braces**, and **blank-line padding** identical to PHP.
+- `const` for bindings. `let` only when mutation is unavoidable; `var` never.
+- Semicolons are mandatory.
+- Prefer arrow functions: `const functionName = () => {}` instead of `function functionName() {}`.
+- Prefer array helpers instead of loops: `map`, `reduce`, `filter`, `every`, `some`.
+
+### Naming & Typing
+
+- **Interfaces / Types**: `PascalCase` (e.g., `ProductValue`).
+- **Enums**: Do not use – prefer union types: (`'OPEN' | 'CLOSED'`).
+- **Functions / vars**: `camelCase` (`createEnterpriseEventPayload`).
+- **Banned**: `any`, `object`, `Function`, non-null assertions.
+- **Prefer generics** for helpers: `sendEnterpriseEventPayload<T>()`.
+- **Avoid type assertions** Narrowing types is better than asserting types.
+
+### Documentation (tsDoc / jsDoc)
+
+```ts
+/**
+ * Sends a payload to the EEV service.
+ *
+ * @param options - The options for sending the payload.
+ * @param options.event - The event name.
+ * @param options.data - Optional payload fragment.
+ */
+```
+
+- Same blank-line & period rules as phpDoc.
+- Do not include `@returns` documentation – TypeScript does this for us.
+- Use implicit returns for concise arrow-functions *only* when single-expression.
+
+---
+
+## TailwindCSS
+
+### Custom CSS with `@apply`
+
+```css
+.accreditation--boxed {
+    & .accreditation__item {
+        &:nth-child(even):before {
+            @apply block content-[''];
+        }
+    }
+}
+```
+
+- Nesting via PostCSS nested rules; indent with **tabs**.
+- Utility classes are composed with `@apply`; Prefer not to duplicate raw CSS properties that have Tailwind equivalents.
+
+### BEM-like Modifiers
+
+- Block: `.carousel-approach`
+- Element: `__image`
+- Modifier: `--reverse`
+
+### Design Tokens
+
+- Use **Tailwind config** for colors & spacing; hard-coded values are only allowed for bespoke dimensions.
+- `transition:` utilities use *named* easing where possible (`ease`, `ease-in-out`).
+
+---
+
+## Summary
+
+This document captures the nuances of our style so that any contributor can write code that looks, feels, and behaves exactly like the rest of the theme. It is appreciated when you adopt these guidelines verbatim — *consistency is a feature*.

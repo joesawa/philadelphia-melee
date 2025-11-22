@@ -1,3 +1,6 @@
+# Other
+plans/prompts.md
+
 # macOS
 .DS_Store
 .DS_Store?
@@ -79,8 +82,8 @@ tmp/
 temp/
 
 # Editor directories and files
-.vscode/
-.idea/
+# .vscode/
+# .idea/
 *.swp
 *.swo
 *~

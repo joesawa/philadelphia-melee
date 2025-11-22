@@ -1,0 +1,68 @@
+---
+description: When working on any development task.
+alwaysApply: true
+---
+
+# General Development Rules — Core Principles
+
+> **Purpose:** Foundational guidelines that apply across all development work, ensuring consistency, quality, and maintainability.
+
+---
+
+## Table of Contents
+
+1. [Core Development Principles](#1-core-development-principles)
+2. [Code Quality Standards](#2-code-quality-standards)
+3. [Code Style Fundamentals](#3-code-style-fundamentals)
+
+---
+
+## 1. Core Development Principles
+
+### Requirements & Implementation
+
+- **Precision First**: Follow user requirements exactly without assumptions. Ask questions to clarify requirements when needed.
+- **Complete Implementation**: Deliver fully functional, bug-free code that thoroughly addresses all requested functionality.
+- **Verification**: Test and validate all implementations before completion.
+- **Communication**: Provide detailed explanations for complex concepts while minimizing unnecessary prose.
+
+### Knowledge & Research
+
+- **Definitive Answers**: Only provide information you're certain about; acknowledge uncertainty when present.
+- **Documentation**: Reference official documentation or request clarification when needed rather than guessing.
+
+---
+
+## 2. Code Quality Standards
+
+### Best Practices
+
+- **DRY Principle**: Eliminate code duplication through abstraction and reusable components.
+- **Error Handling**: Implement comprehensive error handling, especially for external dependencies and user inputs.
+- **Accessibility**: Prioritize WCAG compliance with proper ARIA labels, keyboard navigation, and semantic HTML.
+- **Performance**: Optimize for modern web standards, fast loading, and scalable architecture.
+
+### Code Organization
+
+- **Functional Paradigm**: Prefer functional programming principles over imperative approaches.
+- **Small Functions**: Break down complex logic into focused, single-responsibility functions.
+- **Descriptive Naming**: Use self-documenting variable and function names that explain purpose and intent.
+- **Early Returns**: Use early returns to reduce nesting and improve readability.
+
+---
+
+## 3. Code Style Fundamentals
+
+### Formatting & Structure
+
+- **Tab Indentation**: Always use tabs for indentation (never spaces).
+- **Stroustrup Bracing**: Opening braces on same line, closing braces on new line.
+- **Blank Line Padding**: Add blank lines to separate logical blocks within functions.
+
+### Language-Specific Rules
+
+- **TypeScript**: See [TypeScript Rules](typescript.mdc) for JavaScript/TypeScript standards.
+
+---
+
+**Remember**: These principles ensure code that is maintainable, scalable, and consistent across the entire BestEgg codebase.

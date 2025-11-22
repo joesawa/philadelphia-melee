@@ -1,0 +1,501 @@
+---
+description: When working on any TypeScript or JavaScript file.
+alwaysApply: true
+---
+
+# TypeScript Development Rules — JavaScript Standards
+
+> **Purpose:** Comprehensive TypeScript and JavaScript coding standards, ensuring type safety, maintainability, and modern best practices.
+
+---
+
+## 1. Core TypeScript Principles
+
+### Type Safety First
+
+- **No Any Types**: The `any` type is strictly forbidden; find type-safe alternatives. This is non-negotiable.
+- **No "as" Type Assertions**: Never use `as` assertions; always use type guards instead. This is non-negotiable.
+- **Explicit Types**: Define types for all function parameters and return values.
+- **Interface Usage**: Use interfaces for complex object structures.
+- **Union Types**: Prefer union types over enums for simple value sets.
+
+### Code Quality
+
+- **Functional Programming**: Prefer immutable operations and pure functions.
+- **Early Returns**: Use early returns to reduce nesting and improve readability.
+- **Small Functions**: Keep functions focused on single responsibilities.
+- **DRY Principle**: Abstract repeated logic into reusable utilities.
+
+---
+
+## 2. Language Syntax & Style
+
+### Function Definitions
+
+- **Const Functions**: Always use `const` for function definitions (arrow functions preferred).
+- **Arrow Functions**: Use arrow functions for consistency and lexical scoping.
+- **Method Shorthand**: Use concise method syntax in object literals.
+
+```ts
+// ✅ GOOD: Const arrow functions
+const processUserData = (userData: UserData): ProcessedUser => {
+
+    const validatedData = validateUserData(userData);
+
+    if (!validatedData.isValid) {
+        throw new ValidationError('Invalid user data');
+    }
+
+    return transformUserData(validatedData);
+
+};
+
+// ✅ GOOD: Interface definitions
+interface UserData {
+    id: number;
+    name: string;
+    email: string;
+    preferences?: UserPreferences;
+}
+
+interface ProcessedUser {
+    id: number;
+    displayName: string;
+    isActive: boolean;
+    lastLogin: Date;
+}
+```
+
+### Formatting Standards
+
+- **Tab Indentation**: Use tabs exclusively for indentation.
+- **Stroustrup Bracing**: Opening braces on same line, closing braces on new line.
+- **Blank Line Padding**: Add blank lines to separate logical blocks within functions.
+- **Semicolons**: Always use semicolons (ASI can be unpredictable).
+
+---
+
+## 3. Type System Guidelines
+
+### Type Definitions
+
+- **Interface vs Type**: Use `interface` for objects, `type` for unions/primitives.
+- **Generic Constraints**: Use generics for reusable utilities.
+- **Optional Properties**: Use `?` for optional properties, avoid `undefined` unions.
+- **Readonly**: Use `readonly` for immutable properties.
+
+```ts
+// ✅ GOOD: Proper type definitions
+interface APIResponse<T> {
+    readonly data: T;
+    readonly status: 'success' | 'error';
+    readonly message?: string;
+    timestamp: Date;
+}
+
+type UserRole = 'admin' | 'editor' | 'viewer';
+
+interface User {
+    readonly id: number;
+    name: string;
+    email: string;
+    role: UserRole;
+    preferences?: UserPreferences;
+}
+
+// ✅ GOOD: Generic utility functions
+const createAPIResponse = <T>(
+    data: T,
+    status: APIResponse<T>['status'],
+    message?: string
+): APIResponse<T> => ({
+    data,
+    status,
+    message,
+    timestamp: new Date(),
+});
+```
+
+### Type Guards & Assertions
+
+- **Type Guards**: Use runtime type checks for narrowing types.
+- **Avoid Assertions**: Never use `as` assertions; use type guards instead.
+- **Non-null Assertions**: Avoid `!` operator; handle null/undefined properly.
+
+```ts
+// ✅ GOOD: Type guards
+const isHTMLElement = (element: unknown): element is HTMLElement => {
+    return element instanceof HTMLElement;
+};
+
+const isAPIError = (response: APIResponse<unknown>): response is APIResponse<Error> => {
+    return response.status === 'error' && response.data instanceof Error;
+};
+
+// ✅ GOOD: Proper null handling
+const getElementText = (element: unknown): string => {
+
+    if (!isHTMLElement(element)) {
+        return '';
+    }
+
+    return element.textContent?.trim() ?? '';
+
+};
+
+// ❌ BAD: Type assertions
+const badGetElementText = (element: unknown): string => {
+    return (element as HTMLElement).textContent || ''; // Unsafe assertion
+};
+```
+
+---
+
+## 4. Function Design & Patterns
+
+### Function Structure
+
+- **Single Responsibility**: Each function should do one thing well.
+- **Parameter Limits**: Keep parameter count under 4; use objects for complex data.
+- **Pure Functions**: Prefer functions without side effects when possible.
+- **Return Types**: Always explicitly declare return types.
+
+### Utility Patterns
+
+```ts
+// ✅ GOOD: Pure functions with clear interfaces
+const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email.trim());
+};
+
+const formatUserName = (firstName: string, lastName: string): string =>
+    `${firstName.trim()} ${lastName.trim()}`.trim();
+
+// ✅ GOOD: Error handling with typed results
+const tryCatch = async <T>(
+    promise: Promise<T>
+): Promise<[Error | null, T | null]> => {
+
+    try {
+        const result = await promise;
+        return [null, result];
+    }
+    catch (error) {
+        return [
+            error instanceof Error
+                ? error
+                : new Error(String(error)),
+            null,
+        ];
+    }
+
+};
+```
+
+### Async/Await Patterns
+
+- **Async Functions**: Use async/await over Promise chains.
+- **Error Handling**: Use try/catch with typed error handling.
+- **Concurrent Operations**: Use `Promise.all()` for parallel operations.
+
+```ts
+// ✅ GOOD: Async/await with proper error handling
+const fetchUserData = async (userId: number): Promise<UserData> => {
+
+    const [fetchError, response] = await tryCatch(
+        fetch(`/api/users/${userId}`)
+    );
+
+    if (fetchError || !response?.ok) {
+        throw new APIError('Failed to fetch user data', { cause: fetchError });
+    }
+
+    const [parseError, userData] = await tryCatch(response.json());
+
+    if (parseError) {
+        throw new ParseError('Failed to parse user data', { cause: parseError });
+    }
+
+    return userData as UserData;
+
+};
+```
+
+---
+
+## 5. DOM Interaction
+
+### DOM Selection
+
+- **qs() Utility**: Always use the global `qs()` function for DOM queries.
+- **Type Safety**: Use generic type parameters for type-safe selections.
+- **Null Handling**: Always handle cases where elements might not exist.
+
+```ts
+// ✅ GOOD: Type-safe DOM selection
+const setupModal = (): void => {
+
+    const modal = qs<HTMLDialogElement>('.modal');
+    const closeButton = qs<HTMLButtonElement>('.modal__close');
+    const openButtons = qs<HTMLButtonElement[]>(['.modal-trigger']);
+
+    if (!modal || !closeButton || !openButtons.length) {
+        console.warn('Modal elements not found');
+        return;
+    }
+
+    // Setup event listeners
+    closeButton.addEventListener('click', () => modal.close());
+
+    openButtons.forEach(button => {
+        button.addEventListener('click', () => modal.showModal());
+    });
+
+};
+```
+
+### Event Handling
+
+- **Typed Handlers**: Use typed event handlers for better type safety.
+- **Cleanup**: Always provide cleanup functions for event listeners.
+- **Delegation**: Use event delegation for dynamic content.
+
+```ts
+// ✅ GOOD: Typed event handling
+const typedHandler = <T extends Event, E extends Element, C extends Element>(
+    handler: (event: T, currentTarget: E, target: C) => void
+) => {
+
+    return (event: T) => {
+
+        const currentTarget = event.currentTarget as E;
+        const target = event.target as C;
+
+        if (!currentTarget || !target) {
+            return;
+        }
+
+        handler(event, currentTarget, target);
+
+    };
+
+};
+
+// ✅ GOOD: Event delegation with type safety
+const setupListInteractions = (): void => {
+
+    const list = qs<HTMLUListElement>('.interactive-list');
+
+    if (!list) {
+        return;
+    }
+
+    list.addEventListener('click', typedHandler<MouseEvent, HTMLUListElement, HTMLElement>((event, list, clickedElement) => {
+
+            event.preventDefault();
+
+            if (clickedElement.tagName === 'BUTTON') {
+                handleButtonClick(clickedElement as HTMLButtonElement);
+            }
+            else if (clickedElement.tagName === 'A') {
+                handleLinkClick(clickedElement as HTMLAnchorElement);
+            }
+
+        }
+    ));
+
+};
+```
+
+---
+
+## 6. Error Handling & Validation
+
+### Error Types
+
+- **Custom Errors**: Create specific error classes for different failure modes.
+- **Error Context**: Include relevant context in error messages.
+- **Logging**: Use appropriate logging levels and structured data.
+
+```ts
+// ✅ GOOD: Custom error classes
+class ValidationError extends Error {
+
+    constructor(
+        message: string,
+        public readonly field?: string,
+        public readonly value?: unknown
+    ) {
+        super(message);
+        this.name = 'ValidationError';
+    }
+
+}
+
+class APIError extends Error {
+
+    constructor(
+        message: string,
+        public readonly statusCode?: number,
+        public readonly endpoint?: string
+    ) {
+        super(message);
+        this.name = 'APIError';
+    }
+
+}
+```
+
+### Validation Patterns
+
+- **Zod Schemas**: Use zod/v4-mini for runtime validation.
+- **Type Guards**: Combine validation with type narrowing.
+- **Error Reporting**: Report validation errors appropriately.
+
+```ts
+import * as z from 'zod/v4-mini';
+
+// ✅ GOOD: Zod schema validation
+const userSchema = z.object({
+    id:    z.number().positive(),
+    name:  z.string().min(1).max(100),
+    email: z.string().email(),
+    role:  z.enum(['admin', 'editor', 'viewer']),
+});
+
+const validateUser = (data: unknown): User => {
+
+    const result = userSchema.safeParse(data);
+
+    if (!result.success) {
+        reportError({
+            message: 'User validation failed',
+            errors: result.error.errors,
+            data,
+        });
+        throw new ValidationError('Invalid user data');
+    }
+
+    return result.data;
+
+};
+```
+
+---
+
+## 7. Performance Considerations
+
+### Memory Management
+
+- **Event Listeners**: Always remove event listeners when components unmount.
+- **DOM References**: Avoid keeping references to DOM elements unnecessarily.
+- **Large Objects**: Be mindful of memory usage with large datasets.
+
+### Optimization Patterns
+
+- **Debouncing**: Use debouncing for frequent operations like search.
+- **Memoization**: Cache expensive computations when appropriate.
+- **Lazy Loading**: Implement lazy loading for heavy components.
+
+```ts
+// ✅ GOOD: Debounced search
+const debounce = <T extends (...args: never[]) => void>(
+    func: T,
+    wait: number
+): ((...args: Parameters<T>) => void) => {
+
+    let timeout: NodeJS.Timeout | null = null;
+
+    return (...args: Parameters<T>) => {
+
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+
+        timeout = setTimeout(() => func(...args), wait);
+
+    };
+
+};
+
+const debouncedSearch = debounce((query: string) => {
+    performSearch(query);
+}, 300);
+```
+
+---
+
+## 8. Testing & Quality Assurance
+
+### Test Structure
+
+- **Unit Tests**: Test individual functions and utilities.
+- **Integration Tests**: Test component interactions.
+- **E2E Tests**: Test complete user workflows.
+
+### Testing Patterns
+
+```ts
+// ✅ GOOD: Test utilities
+const createMockUser = (overrides: Partial<User> = {}): User => ({
+    id: 1,
+    name: 'John Doe',
+    email: 'john@example.com',
+    role: 'viewer',
+    ...overrides,
+});
+
+describe('validateEmail', () => {
+
+    test('validates correct email addresses', () => {
+        expect(validateEmail('user@example.com')).toBe(true);
+        expect(validateEmail('test.email+tag@domain.co.uk')).toBe(true);
+    });
+
+    test('rejects invalid email addresses', () => {
+        expect(validateEmail('invalid')).toBe(false);
+        expect(validateEmail('user@')).toBe(false);
+        expect(validateEmail('@example.com')).toBe(false);
+    });
+
+});
+```
+
+---
+
+## 9. Documentation Standards
+
+### JSDoc Format
+
+- **Complete Coverage**: Document all exported functions and complex internal functions.
+- **Blank Line After Description**: Always add blank line after main description.
+- **Period Endings**: End all sentences with periods.
+- **Type Documentation**: TypeScript provides types; focus on behavior description.
+
+```ts
+/**
+ * Fetches user data from the API with error handling.
+ *
+ * Makes an authenticated request to retrieve user information.
+ * Includes automatic retry logic and proper error handling.
+ *
+ * @param userId - The unique identifier of the user to fetch.
+ * @returns Promise resolving to user data or rejecting with error.
+ * @throws {APIError} When the API request fails.
+ * @throws {ValidationError} When the response data is invalid.
+ */
+const fetchUserData = async (userId: number): Promise<UserData> => {
+    // Implementation...
+};
+```
+
+### Inline Comments
+
+- **Purpose Explanation**: Explain why code exists, not what it does.
+- **Complex Logic**: Document non-obvious algorithms or business rules.
+- **TODO/FIXME**: Use for temporary notes that need follow-up.
+
+---
+
+**Remember**: TypeScript code prioritizes type safety, modern JavaScript patterns, and maintainable architecture for long-term project success.
