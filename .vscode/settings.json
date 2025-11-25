@@ -833,4 +833,7 @@
 		"chats",
 	],
 	"markdownlint.focusMode": true,
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
 }
