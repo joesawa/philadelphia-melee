@@ -20,16 +20,14 @@
 		],
 		"paths": {
 			"@/*": ["./*"],
-			"@payload-config": ["./payload.config.ts"]
+			"@payload-config": ["./payload.config.ts"],
+			"@/components/*": ["./src/components/*"],
+			"@/hooks/*": ["./src/hooks/*"],
+			"@/lib/*": ["./src/lib/*"],
+			"@/providers/*": ["./src/providers/*"],
+			"@/styles/*": ["./src/styles/*"]
 		}
 	},
-	"include": [
-		".next/dev/types/**/*.ts",
-		".next/types/**/*.ts",
-		"**/*.mts",
-		"**/*.ts",
-		"**/*.tsx",
-		"next-env.d.ts"
-	],
+	"include": [".next/dev/types/**/*.ts", ".next/types/**/*.ts", "**/*.mts", "**/*.ts", "**/*.tsx", "next-env.d.ts"],
 	"exclude": ["node_modules"]
 }

@@ -28,7 +28,8 @@
 			"!build",
 			"!dist",
 			"!node_modules",
-			"!plans"
+			"!plans",
+			"!payload-types.ts"
 		]
 	},
 	"formatter": {
@@ -39,7 +40,7 @@
 		"indentStyle": "tab",
 		"indentWidth": 4,
 		"lineEnding": "lf",
-		"lineWidth": 100
+		"lineWidth": 140
 	},
 	"javascript": {
 		"formatter": {
@@ -79,5 +80,17 @@
 			"next": "recommended",
 			"react": "recommended"
 		}
-	}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.css"],
+			"linter": {
+				"rules": {
+					"complexity": {
+						"noImportantStyles": "off"
+					}
+				}
+			}
+		}
+	]
 }
