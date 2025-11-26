@@ -15,7 +15,6 @@ export default buildConfig({
 		},
 	},
 	collections: [
-		// Users collection (required for auth)
 		{
 			slug: 'users',
 			auth: true,
@@ -32,15 +31,20 @@ export default buildConfig({
 					name: 'role',
 					type: 'select',
 					options: [
-						{ label: 'Admin', value: 'admin' },
-						{ label: 'Editor', value: 'editor' },
+						{
+							label: 'Admin',
+							value: 'admin',
+						},
+						{
+							label: 'Editor',
+							value: 'editor',
+						},
 					],
 					defaultValue: 'editor',
 					required: true,
 				},
 			],
 		},
-		// Media collection for images/files
 		{
 			slug: 'media',
 			upload: {
@@ -56,8 +60,6 @@ export default buildConfig({
 			],
 		},
 	],
-	editor: lexicalEditor({}),
-	secret: process.env.PAYLOAD_SECRET ?? '',
 	typescript: {
 		outputFile: path.resolve(dirname, 'payload-types.ts'),
 	},
@@ -66,4 +68,6 @@ export default buildConfig({
 			connectionString: process.env.DATABASE_URI ?? '',
 		},
 	}),
+	editor: lexicalEditor({}),
+	secret: process.env.PAYLOAD_SECRET ?? '',
 });

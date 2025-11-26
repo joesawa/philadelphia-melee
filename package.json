@@ -13,7 +13,7 @@
 		"db:stop": "brew services stop postgresql@16",
 		"db:status": "brew services info postgresql@16",
 		"db:psql": "/usr/local/opt/postgresql@16/bin/psql philadelphia_melee_dev",
-		"db:reset": "/usr/local/opt/postgresql@16/bin/dropdb philadelphia_melee_dev && /usr/local/opt/postgresql@16/bin/createdb philadelphia_melee_dev",
+		"db:reset": "./scripts/reset-db.sh",
 		"payload:generate": "payload generate:types"
 	},
 	"dependencies": {
@@ -40,6 +40,7 @@
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"babel-plugin-react-compiler": "1.0.0",
+		"biome-plugin-no-type-assertion": "^1.0.2",
 		"sass": "^1.94.2",
 		"tailwindcss": "^4",
 		"typescript": "^5"

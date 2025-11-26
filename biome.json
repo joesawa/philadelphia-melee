@@ -1,5 +1,18 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.2.0/schema.json",
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"plugins": ["node_modules/biome-plugin-no-type-assertion/no-type-assertion.grit"],
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [":URL:", ":NODE:"]
+					}
+				}
+			}
+		}
+	},
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
@@ -9,35 +22,41 @@
 		"ignoreUnknown": true,
 		"includes": [
 			"**",
-			"!node_modules",
-			"!.next",
-			"!dist",
-			"!build",
 			"!.cursor",
+			"!.next",
 			"!.vscode",
+			"!build",
+			"!dist",
+			"!node_modules",
 			"!plans"
 		]
 	},
 	"formatter": {
+		"attributePosition": "auto",
 		"enabled": true,
+		"expand": "auto",
+		"formatWithErrors": false,
 		"indentStyle": "tab",
 		"indentWidth": 4,
+		"lineEnding": "lf",
 		"lineWidth": 100
 	},
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "single",
-			"jsxQuoteStyle": "double",
-			"semicolons": "always",
-			"trailingCommas": "all",
 			"arrowParentheses": "always",
+			"bracketSameLine": false,
 			"bracketSpacing": true,
-			"bracketSameLine": false
+			"jsxQuoteStyle": "double",
+			"quoteProperties": "asNeeded",
+			"quoteStyle": "single",
+			"semicolons": "always",
+			"trailingCommas": "all"
 		}
 	},
 	"json": {
 		"formatter": {
-			"indentStyle": "tab"
+			"indentStyle": "tab",
+			"trailingCommas": "none"
 		}
 	},
 	"linter": {

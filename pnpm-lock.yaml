@@ -72,6 +72,9 @@ importers:
       babel-plugin-react-compiler:
         specifier: 1.0.0
         version: 1.0.0
+      biome-plugin-no-type-assertion:
+        specifier: ^1.0.2
+        version: 1.0.2
       sass:
         specifier: ^1.94.2
         version: 1.94.2
@@ -1223,6 +1226,9 @@ packages:
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
+
+  biome-plugin-no-type-assertion@1.0.2:
+    resolution: {integrity: sha512-YGVXDQ67cOM79gA/lPdyndMYZ/vKO39T0rv8DYKsiKwr3bAPZy0PdbC834tvlOXzgRJf2ie6rEFwBg7axdJnEg==}
 
   body-scroll-lock@4.0.0-beta.0:
     resolution: {integrity: sha512-a7tP5+0Mw3YlUJcGAKUqIBkYYGlYxk2fnCasq/FUph1hadxlTRjF+gAcZksxANnaMnALjxEddmSi/H3OR8ugcQ==}
@@ -3612,6 +3618,8 @@ snapshots:
       '@babel/types': 7.28.5
 
   binary-extensions@2.3.0: {}
+
+  biome-plugin-no-type-assertion@1.0.2: {}
 
   body-scroll-lock@4.0.0-beta.0: {}
 
