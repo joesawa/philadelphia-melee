@@ -13,7 +13,6 @@ export const BackgroundGrid = (): ReactElement => {
 		<div className="-z-10 fixed inset-0 pointer-events-none" aria-hidden="true">
 			{/* Base gradient */}
 			<div className="absolute inset-0 bg-gradient-to-b from-background via-background to-surface/50" />
-
 			{/* Grid pattern */}
 			<div
 				className="absolute inset-0 opacity-[0.03]"
@@ -25,7 +24,6 @@ export const BackgroundGrid = (): ReactElement => {
 					backgroundSize: '64px 64px',
 				}}
 			/>
-
 			{/* Radial gradient overlay for depth */}
 			<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent" />
 		</div>

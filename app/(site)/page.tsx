@@ -29,7 +29,6 @@ const HomePage = (): ReactElement => {
 					</Button>
 				</div>
 			</section>
-
 			{/* Quick Links Grid */}
 			<section className="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-20">
 				<Card hover>
@@ -80,7 +79,6 @@ const HomePage = (): ReactElement => {
 					</CardContent>
 				</Card>
 			</section>
-
 			{/* Call to Action */}
 			<section className="bg-surface py-16 border border-border rounded-2xl text-center">
 				<h2 className="mb-4 font-bold text-foreground text-3xl">Join the Community</h2>

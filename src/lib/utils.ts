@@ -1,10 +1,4 @@
 /**
- * Utility functions for the Philadelphia Melee site.
- *
- * @module lib/utils
- */
-
-/**
  * Combines class names, filtering out falsy values.
  *
  * @param classes - Class names to combine.

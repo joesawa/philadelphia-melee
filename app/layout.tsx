@@ -26,14 +26,6 @@ interface RootLayoutProps {
 	children: ReactNode;
 }
 
-/**
- * Root layout.
- *
- * Provides:
- * - Font loading (Geist Sans & Mono)
- * - Global metadata
- * - Base HTML structure
- */
 const RootLayout = ({ children }: RootLayoutProps): ReactElement => {
 	return (
 		<html lang="en" className="dark">

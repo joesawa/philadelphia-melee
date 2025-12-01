@@ -6,6 +6,18 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 	hover?: boolean;
 }
 
+interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
+	children: ReactNode;
+}
+
+interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
+	children: ReactNode;
+}
+
+interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
+	children: ReactNode;
+}
+
 /**
  * Card container component.
  */
@@ -25,10 +37,6 @@ export const Card = ({ className, children, hover = false, ...props }: CardProps
 	);
 };
 
-interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
-	children: ReactNode;
-}
-
 /**
  * Card header section.
  */
@@ -40,10 +48,6 @@ export const CardHeader = ({ className, children, ...props }: CardHeaderProps): 
 	);
 };
 
-interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
-	children: ReactNode;
-}
-
 /**
  * Card title element.
  */
@@ -54,10 +58,6 @@ export const CardTitle = ({ className, children, ...props }: CardTitleProps): Re
 		</h3>
 	);
 };
-
-interface CardContentProps extends HTMLAttributes<HTMLDivElement> {
-	children: ReactNode;
-}
 
 /**
  * Card content section.

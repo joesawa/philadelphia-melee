@@ -1,7 +1,6 @@
 'use client';
 
-import { type ReactElement, type ReactNode, useEffect, useRef } from 'react';
-import { floatIn } from '@/src/lib/animations';
+import { type ReactElement, type ReactNode, useRef } from 'react';
 import { cn } from '@/src/lib/utils';
 
 interface PageShellProps {
@@ -24,31 +23,31 @@ interface PageShellProps {
  * </PageShell>
  * ```
  */
-export const PageShell = ({ children, className, stagger = true }: PageShellProps): ReactElement => {
+export const PageShell = ({ children, className, stagger = false }: PageShellProps): ReactElement => {
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		if (!containerRef.current) {
-			return;
-		}
+	// useEffect(() => {
+	// 	if (!containerRef.current) {
+	// 		return;
+	// 	}
 
-		const container = containerRef.current;
+	// 	const container = containerRef.current;
 
-		if (stagger) {
-			// Animate direct children with stagger
-			const animatableChildren = container.querySelectorAll(':scope > *');
+	// 	if (stagger) {
+	// 		// Animate direct children with stagger
+	// 		const animatableChildren = container.querySelectorAll(':scope > *');
 
-			// Make sure all elements are HTMLElement
-			const animatableChildrenArray = [...animatableChildren].filter(
-				(element): element is HTMLElement => element instanceof HTMLElement,
-			);
+	// 		// Make sure all elements are HTMLElement
+	// 		const animatableChildrenArray = [...animatableChildren].filter(
+	// 			(element): element is HTMLElement => element instanceof HTMLElement,
+	// 		);
 
-			floatIn(animatableChildrenArray);
-		} else {
-			// Animate the container itself
-			floatIn(container);
-		}
-	}, [stagger]);
+	// 		floatIn(animatableChildrenArray);
+	// 	} else {
+	// 		// Animate the container itself
+	// 		floatIn(container);
+	// 	}
+	// }, [stagger]);
 
 	return (
 		<div
